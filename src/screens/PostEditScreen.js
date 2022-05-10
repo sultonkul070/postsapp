@@ -26,8 +26,8 @@ const PostEditScreen = () => {
     success: successUpdate,
   } = postUpdate;
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(post.title);
+  const [body, setBody] = useState(post.body);
 
   const updateToast = () => toast('Post successfully updated!');
 
