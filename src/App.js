@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
+import PostScreen from './screens/PostScreen';
+import PostEditScreen from './screens/PostEditScreen';
+import PostCreateScreen from './screens/PostCreateScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <main className='py-3'>
+        <Container>
+          <Routes>
+            <Route path='/' exact element={<HomeScreen />}></Route>
+            <Route
+              path='/page/:pageNumber'
+              exact
+              element={<HomeScreen />}
+            ></Route>
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              exact
+              element={<HomeScreen />}
+            ></Route>
+            <Route
+              path='/search/:keyword'
+              exact
+              element={<HomeScreen />}
+            ></Route>
+            <Route path='/create' element={<PostCreateScreen />}></Route>
+            <Route path='/posts/:id' element={<PostScreen />}></Route>
+            <Route path='/post/:id/edit' element={<PostEditScreen />}></Route>
+            <Route path='/about' exact element={<AboutScreen />}></Route>
+          </Routes>
+        </Container>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
